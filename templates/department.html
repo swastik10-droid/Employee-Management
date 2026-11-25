@@ -1,0 +1,37 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Departments and designations</h1>
+<div class="row g-3">
+  <div class="col-md-6">
+    <div class="card p-3">
+      <h2>Departments</h2>
+      <a href="{% url 'department_add' %}">Add department</a>
+      <ul class="list-group mt-3">
+        {% for d in departments %}
+        <li class="list-group-item">
+          {{ d }}
+          <a class="float-end" href="{% url 'department_edit' d.pk %}">Edit</a>
+        </li>
+        {% empty %}
+        <li>No departments</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card p-3">
+      <h2>Designations</h2>
+      <a href="{% url 'designation_add' %}">Add designation</a>
+      <ul class="list-group mt-3">
+        {% for d in designations %}
+        <li class="list-group-item">
+          {{ d }}
+          <a class="float-end" href="{% url 'designation_edit' d.pk %}">Edit</a>
+        </li>
+        {% empty %}
+        <li>No designations</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

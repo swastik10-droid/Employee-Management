@@ -1,0 +1,50 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Leave requests</h1>
+{% if not user.is_staff and not user.is_superuser %}<a
+  class="btn btn-primary mb-3"
+  href="{% url 'leave_apply' %}"
+  >Apply for leave</a
+>{% endif %}
+<div class="table-responsive">
+  <table class="table">
+    <tr>
+      <th>Employee</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Reason</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    {% for r in rows %}
+    <tr>
+      <td>{{ r.employee }}</td>
+      <td>{{ r.start_date }}</td>
+      <td>{{ r.end_date }}</td>
+      <td>{{ r.reason }}</td>
+      <td>{{ r.status }}</td>
+      <td>
+        {% if user.is_staff or user.is_superuser %}{% if r.status == 'Pending'
+        %}
+        <form method="post" action="{% url 'leave_review' r.pk %}">
+          {% csrf_token %}<button
+            class="btn btn-sm btn-success"
+            name="action"
+            value="Approved"
+          >
+            Approve
+          </button>
+          <button class="btn btn-sm btn-danger" name="action" value="Rejected">
+            Reject
+          </button>
+        </form>
+        {% endif %}{% endif %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="6">No requests</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

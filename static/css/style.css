@@ -1,0 +1,30 @@
+body {
+  background: #f4f6f9;
+  color: #17243b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+}
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+.card {
+  border: 0;
+  box-shadow: 0 2px 12px #17243b12;
+}
+h1 {
+  margin-bottom: 1.25rem;
+}
+footer {
+  color: #64748b;
+}
+.errorlist {
+  color: #b42318;
+}
+form label {
+  font-weight: 600;
+}

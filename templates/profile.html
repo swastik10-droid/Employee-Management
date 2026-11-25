@@ -1,0 +1,22 @@
+{% extends 'base.html' %}{% block content %}
+<div class="card p-4">
+  <h1>{{ employee.full_name }}</h1>
+  <p>ID: {{ employee.employee_id }}</p>
+  <p>Email: {{ employee.email }}</p>
+  <p>Phone: {{ employee.phone }}</p>
+  <p>Address: {{ employee.address }}</p>
+  <p>Date of birth: {{ employee.date_of_birth|default:'Not provided' }}</p>
+  <p>Gender: {{ employee.gender }}</p>
+  <p>Department: {{ employee.department }}</p>
+  <p>Designation: {{ employee.designation }}</p>
+  <p>Joined: {{ employee.date_of_joining }}</p>
+  <p>Employment: {{ employee.employment_type }}</p>
+  <p>Manager: {{ employee.manager|default:'None' }}</p>
+  <p>Emergency contact: {{ employee.emergency_contact }}</p>
+  <p>Leave balance: {{ employee.leave_balance }} days</p>
+  {% if own_profile %}<a href="{% url 'profile_edit' %}"
+    >Edit personal details</a
+  >{% else %}<a href="{% url 'employee_edit' employee.pk %}">Edit employee</a>{%
+  endif %}
+</div>
+{% endblock %}
